@@ -95,7 +95,7 @@ saveNoteBtn.addEventListener('click', () => {
 const speech = new SpeechSynthesisUtterance(noteContent);
 window.speechSynthesis.speak(speech);
 
-// Add event listener for note deletion and listening
+
 // Add event listener for note deletion, listening, and downloading
 notesList.addEventListener('click', function(e) {
   e.preventDefault();
@@ -140,7 +140,8 @@ notesList.addEventListener('click', function(e) {
 // Load saved notes
 function loadNotes() {
   const keys = Object.keys(localStorage);
-  notesList.innerHTML = ''; 
+  notesList.innerHTML = '';
+  notesList.style.display = "block";
 
   if (keys.length === 0) {
       // No notes in local storage, display a message
@@ -149,7 +150,7 @@ function loadNotes() {
       // There are notes in local storage, load them
       for (let key of keys) {
           const noteContent = localStorage.getItem(key);
-          
+
           // Create li
           const noteElement = document.createElement('li');
           noteElement.className = 'note';

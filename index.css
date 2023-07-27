@@ -35,8 +35,8 @@
 }
 
 .listen-note {
-    background-color: #f5faf5;
-    color: rgb(16, 252, 28);
+    background-color: whitesmoke;
+    color: rgb(5, 133, 11);
     border: none;
     text-align: center;
     text-decoration: none;
@@ -68,6 +68,10 @@
     margin: 4px 2px;
     cursor: pointer;
 }
+.mainCard{
+    box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
+}
+
 .info-record p{
     font-size: 20px;
 }
