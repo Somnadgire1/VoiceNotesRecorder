@@ -1,0 +1,95 @@
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+
+  body {
+    background: url('/image/delicate-yellow-abstract-watercolor-background.png');
+    background-size: cover;
+    background-position: 100%;
+  }
+  .heading {
+    /* Set the background color */
+    background: linear-gradient(to right, #ff8a00 0%, #dd4c4f 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  @keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.sliding {
+    animation: slideIn 0.5s forwards;
+}
+
+.listen-note {
+    background-color: #f5faf5;
+    color: rgb(16, 252, 28);
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 4px;
+    cursor: pointer;
+}
+
+.delete-note {
+    background-color:  #f5faf5;
+    color: rgb(250, 7, 7);
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.download-note{
+    background-color:  #f5faf5;
+    color: rgb(43, 7, 250);
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.info-record p{
+    font-size: 20px;
+}
+
+    footer{
+        position: relative;
+        /* negative value of footer height */
+        margin-top: auto;
+        bottom: 0;
+        clear: both;
+        letter-spacing: 1px;
+    }
+
+
+/* features */
+.features p{
+   letter-spacing: 0.5px;
+}
+
+@media (max-width: 666px) {
+    .container {
+        padding: 50px 25px;
+    }
+    button {
+        margin-bottom: 10px;
+    }
+}
