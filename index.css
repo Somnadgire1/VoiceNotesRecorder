@@ -1,29 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
- * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
 
-  body {
+body {
     background: url('/image/delicate-yellow-abstract-watercolor-background.png');
     background-size: cover;
     background-position: 100%;
     font-family: "Poppins", sans-serif;
-  }
-  .heading {
+}
+
+.heading {
     /* Set the background color */
     background: linear-gradient(to right, #ff8a00 0%, #dd4c4f 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-  }
-  @keyframes slideIn {
+}
+
+@keyframes slideIn {
     0% {
         transform: translateX(-100%);
         opacity: 0;
     }
+
     100% {
         transform: translateX(0);
         opacity: 1;
@@ -47,7 +50,7 @@
 }
 
 .delete-note {
-    background-color:  #f5faf5;
+    background-color: #f5faf5;
     color: rgb(250, 7, 7);
     border: none;
     text-align: center;
@@ -57,8 +60,9 @@
     margin: 4px 2px;
     cursor: pointer;
 }
-.download-note{
-    background-color:  #f5faf5;
+
+.download-note {
+    background-color: #f5faf5;
     color: rgb(43, 7, 250);
     border: none;
     text-align: center;
@@ -68,18 +72,21 @@
     margin: 4px 2px;
     cursor: pointer;
 }
-.mainCard{
+
+.mainCard {
     box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
 }
 
-.info-record p{
+.info-record p {
     font-size: 20px;
 }
-.socialIcons{
+
+.socialIcons {
     display: flex;
     justify-content: center;
 }
-.socialIcons a{
+
+.socialIcons a {
     text-decoration: none;
     padding: 7px;
     background-color: white;
@@ -90,7 +97,8 @@
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-.socialIcons a:hover{
+
+.socialIcons a:hover {
     background-color: #25252bd2;
     transition: 0.5s;
     -webkit-transition: 0.5s;
@@ -98,7 +106,8 @@
     -ms-transition: 0.5s;
     -o-transition: 0.5s;
 }
-.socialIcons a:hover i{
+
+.socialIcons a:hover i {
     color: white;
     transition: 0.5s;
     -webkit-transition: 0.5s;
@@ -106,20 +115,24 @@
     -ms-transition: 0.5s;
     -o-transition: 0.5s;
 }
-.socialIcons a i{
-   font-size: 1.5em;
-   color: black;
-   opacity: 0.9;
+
+.socialIcons a i {
+    font-size: 1.5em;
+    color: black;
+    opacity: 0.9;
 }
-.footerNav{
+
+.footerNav {
     margin: 30px 0;
- }
- .footerNav ul{
+}
+
+.footerNav ul {
     display: flex;
     justify-content: center;
     list-style: none;
- }
- .footerNav ul li a{
+}
+
+.footerNav ul li a {
     color: white;
     margin: 20px;
     text-decoration: none;
@@ -131,55 +144,54 @@
     -ms-transition: 0.5s;
     -o-transition: 0.5s;
 }
-.footerNav ul li a:hover{
+
+.footerNav ul li a:hover {
     opacity: 1;
 }
-.copyright{
+
+.copyright {
     padding-bottom: 0px;
     color: #5e4d4d;
- }
- .copyright span{
+}
+
+.copyright span {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 400;
     margin: 0px 5px;
- }
+}
 
-/* footer{
-   background-color: #000;
-   position: relative;
-   margin-top: auto;
-   bottom: 0;
-   clear: both;
-   min-height: 100px;
-   padding: 10px;
-} */
-    footer{
-        position: relative;
-        margin-top: auto;
-        bottom: 0;
-        clear: both;
-        letter-spacing: 1px;
-        min-height: 100px;
-    }
+
+footer {
+    position: relative;
+    margin-top: auto;
+    bottom: 0;
+    clear: both;
+    letter-spacing: 1px;
+    min-height: 100px;
+}
 
 
 /* features */
-.features p{
-   letter-spacing: 0.5px;
+.features p {
+    letter-spacing: 0.5px;
 }
-.contactUs{
+
+.contactUs {
     text-align: center;
- }
- .contactUs label{
+}
+
+.contactUs label {
     font-size: 20px;
- }
+}
+
 @media (max-width: 700px) {
-    .footerNav ul{
+    .footerNav ul {
         flex-direction: column;
     }
-    .footerNav ul li{
-       
+
+    .footerNav ul li {
+
         text-align: center;
         margin: 10px;
     }
@@ -189,6 +201,7 @@
     .container {
         padding: 50px 25px;
     }
+
     button {
         margin-bottom: 10px;
     }
