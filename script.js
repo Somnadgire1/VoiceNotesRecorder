@@ -8,7 +8,10 @@ const notesList = document.getElementById('notes');
 
 let recognition;
 let noteContent = '';
-let silenceTimer; // new line
+let silenceTimer;
+let isPausedByUser = false;
+isLoadingNotes = false;
+
 
 // Initialize speech recognition if available
 if (window.SpeechRecognition || window.webkitSpeechRecognition) {
@@ -26,7 +29,11 @@ if (window.SpeechRecognition || window.webkitSpeechRecognition) {
     recognition.onend = function() { // new event listener
         // If the recognition service disconnects (e.g., due to long silence), clear the silence timer
         clearTimeout(silenceTimer);
-        recordingStatus.textContent = 'Stopped recording due to Not Recognition Voice. Please Try Again.!';
+        if (!isPausedByUser) {
+            recordingStatus.textContent = 'Stopped recording due to Not Recognition Voice. Please Try Again.!';
+        } else {
+            isPausedByUser = false;  // Reset the flag for future use
+        }
     };
 }
 
@@ -41,6 +48,7 @@ startRecordBtn.addEventListener('click', () => {
 // Handle recording pause
 pauseRecordBtn.addEventListener('click', () => {
     if (recognition) {
+        isPausedByUser = true; 
         recognition.stop();
         updateStatus('Recording Paused.!');
     }
@@ -65,38 +73,85 @@ function updateStatus(text) {
 recognition.onresult = function(event) {
     noteContent += event.results[event.results.length - 1][0].transcript;
     noteTextarea.value = noteContent;
+    console.log("Content before saving:", noteContent);
 };
 
 saveNoteBtn.addEventListener('click', () => {
+    // console.log("Save button clicked. Current note content:", noteContent);
   if (recognition) {
       recognition.stop();
       updateStatus('Recording stopped.');
   }
-  localStorage.setItem(new Date().toISOString(), noteContent);
-  noteContent = '';
-  noteTextarea.value = '';
-  loadNotes();
-  updateStatus('Note Saved Successful.');
+//   console.log("Recognition stopped. Time taken:", Date.now() - startTime, "ms");
+  if (noteContent.trim() !== '') {
+    try {
+        localStorage.setItem(new Date().toISOString(), noteContent);
+        noteContent = '';
+        noteTextarea.value = '';
+        // console.log("Calling loadNotes from [function or event description]");
+        loadNotes();
+        updateStatus('Note Saved Successfully.');
+    } catch (e) {
+        console.error("Failed to save note in localStorage:", e);
+        updateStatus('Error: Note could not be saved.');
+    }
+} else {
+    updateStatus('Note is empty and won\'t be saved.');
+}
 });
 
 // Handle note saving
 saveNoteBtn.addEventListener('click', () => {
-  if (recognition) {
-      recognition.stop();
-      updateStatus('Recording stopped.');
-  }
-  localStorage.setItem(new Date().toISOString(), noteContent);
-  noteContent = '';
-  noteTextarea.value = '';
-  loadNotes();
-  setTimeout(() => updateStatus('Note saved.'), 500); // delay "Note saved." message by 500ms
-});
+    if (recognition) {
+        recognition.stop();
+        updateStatus('Recording stopped.');
+    }
+    if (noteContent.trim() !== '') {
+        try {
+            localStorage.setItem(new Date().toISOString(), noteContent);
+            noteContent = '';
+            noteTextarea.value = '';
+            loadNotes();
+            updateStatus('Note Saved Successfully.');
+        } catch (e) {
+            console.error("Failed to save note in localStorage:", e);
+            updateStatus('Error: Note could not be saved.');
+        }
+    } else {
+        updateStatus('Note is empty and won\'t be saved.');
+    }
+    saveCurrentNote();
+ });
 
 const speech = new SpeechSynthesisUtterance(noteContent);
 window.speechSynthesis.speak(speech);
+noteTextarea.addEventListener('keydown', function(event) {
+    if (event.key === "Enter" && !event.shiftKey) {  
+        event.preventDefault(); 
+        saveCurrentNote();
+        noteTextarea.value = ''; 
+    }
+});
 
+function saveCurrentNote() {
+    const currentContent = noteTextarea.value; // Get the current content from textarea
+    if (currentContent.trim() !== '') {
+        try {
+            const timestamp = new Date().toISOString();
+            localStorage.setItem(timestamp, currentContent);
+            loadNotes();
+            updateStatus('Note Saved Successfully.');
+        } catch (e) {
+            console.error("Failed to save note in localStorage:", e);
+            updateStatus('Error: Note could not be saved.');
+        }
+    } else {
+        updateStatus('Note is empty and won\'t be saved.');
+    }
+}
 
 // Add event listener for note deletion, listening, and downloading
+
 notesList.addEventListener('click', function(e) {
   e.preventDefault();
   var target = e.target;
@@ -108,7 +163,7 @@ notesList.addEventListener('click', function(e) {
 
   // Get the note content
   const noteContent = noteElement.querySelector('.content').textContent;
-
+  console.log("Saving note:", noteContent);
   if (event.target.matches('.listen-note')) {
       // If the 'Listen' button was clicked, read the note aloud
       const speech = new SpeechSynthesisUtterance(noteContent);
@@ -139,6 +194,8 @@ notesList.addEventListener('click', function(e) {
 
 // Load saved notes
 function loadNotes() {
+    if (isLoadingNotes) return;
+    isLoadingNotes = true;
   const keys = Object.keys(localStorage);
   notesList.innerHTML = '';
   notesList.style.display = "block";
@@ -150,12 +207,12 @@ function loadNotes() {
       // There are notes in local storage, load them
       for (let key of keys) {
           const noteContent = localStorage.getItem(key);
-
+        //   console.log("Loaded notes:", keys); 
           // Create li
           const noteElement = document.createElement('li');
           noteElement.className = 'note';
           noteElement.setAttribute('data-key', key);  // Store the key in a data attribute
-
+          console.log("Loaded notes:", keys); 
           // Create p for note content
           const contentElement = document.createElement('p');
           contentElement.className = 'content';
@@ -186,7 +243,10 @@ function loadNotes() {
           notesList.appendChild(noteElement);
       }
   }
+  isLoadingNotes = false;
 }
+console.trace("loadNotes called from: ");
 
+// console.log(localStorage.getItem('the_timestamp_key_here'));
 // Load notes on page load
 loadNotes();
