@@ -75,20 +75,114 @@
 .info-record p{
     font-size: 20px;
 }
+.socialIcons{
+    display: flex;
+    justify-content: center;
+}
+.socialIcons a{
+    text-decoration: none;
+    padding: 7px;
+    background-color: white;
+    margin: 12px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+.socialIcons a:hover{
+    background-color: #25252bd2;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+.socialIcons a:hover i{
+    color: white;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+.socialIcons a i{
+   font-size: 1.5em;
+   color: black;
+   opacity: 0.9;
+}
+.footerNav{
+    margin: 30px 0;
+ }
+ .footerNav ul{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+ }
+ .footerNav ul li a{
+    color: white;
+    margin: 20px;
+    text-decoration: none;
+    font-size: 1.2em;
+    opacity: 0.7;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+.footerNav ul li a:hover{
+    opacity: 1;
+}
+.copyright{
+    padding-bottom: 0px;
+    color: #5e4d4d;
+ }
+ .copyright span{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0px 5px;
+ }
 
+/* footer{
+   background-color: #000;
+   position: relative;
+   margin-top: auto;
+   bottom: 0;
+   clear: both;
+   min-height: 100px;
+   padding: 10px;
+} */
     footer{
         position: relative;
-        /* negative value of footer height */
         margin-top: auto;
         bottom: 0;
         clear: both;
         letter-spacing: 1px;
+        min-height: 100px;
     }
 
 
 /* features */
 .features p{
    letter-spacing: 0.5px;
+}
+.contactUs{
+    text-align: center;
+ }
+ .contactUs label{
+    font-size: 20px;
+ }
+@media (max-width: 700px) {
+    .footerNav ul{
+        flex-direction: column;
+    }
+    .footerNav ul li{
+       
+        text-align: center;
+        margin: 10px;
+    }
 }
 
 @media (max-width: 666px) {
